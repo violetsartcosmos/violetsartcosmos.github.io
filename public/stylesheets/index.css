@@ -324,14 +324,14 @@
      position: relative;
  }
  
- .left-skills {
+ .row .left-skills {
      position: relative;
      min-height: 600px;
      height: 50vh;
  }
  
  @media only screen and (max-width: 992px) {
-     .left-skills {
+     .row .left-skills {
          height: auto;
      }
  }
@@ -347,7 +347,7 @@
      position: relative;
      padding-top: 4em;
      min-height: 600px;
-     height: 40vh;
+     height: auto;
  }
  
  @media only screen and (max-width: 992px) {
@@ -467,7 +467,7 @@
      background-size: cover;
      background-repeat: no-repeat;
      background-attachment: scroll;
-     background-image: linear-gradient(rgba(120, 34, 79, 1), rgba(120, 34, 79, 0.5)), url('../images/galaxy.jpg');
+    background-image: linear-gradient(rgba(120, 34, 79, 1), rgba(120, 34, 79, 0.5)), url('../images/galaxyOptimizedWeb.jpg');
  }
  
  @media only screen and (max-width: 992px) {
@@ -539,7 +539,7 @@
      z-index: 11;
      margin-bottom: 0;
      background-color: black;
-     background-image: url('../images/nebula.png');
+    background-image: url('../images/nebula.jpg');
      background-position: bottom;
      background-repeat: no-repeat;
      background-attachment: fixed;

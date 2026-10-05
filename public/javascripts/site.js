@@ -1,67 +1,48 @@
 $(document).ready(function() {
+    $('.clickable').on('click', function(event) {
+        var target = $($(this).attr('href'));
+        if (!target.length) {
+            return;
+        }
+        event.preventDefault();
+        $('html, body').animate({ scrollTop: target.offset().top }, 1000);
+    });
 
-
-    console.log("start")
-
-    $(".clickable").on("click", coolSlider)
-
-    /* particlesJS.load(@dom-id, @path-json, @callback (optional)); */
-    particlesJS.load('particles-js', '../public/javascripts/particles.json', function() {
+    particlesJS.load('particles-js', './public/javascripts/particles.json', function() {
         console.log('callback - particles.js config loaded');
     });
 
-    $('#submit-button-js').on("click", function() {
+    $('#contact-form').on('submit', function(event) {
         event.preventDefault();
         var hidden = $('#hidden-field').val();
         var email = $('#email').val();
         var message = $('#message').val();
         var subject = $('#subject').val();
-        console.log("Submitted something!")
 
-        console.log(" email " + email + " message " + message + " subject " + subject)
         $('.empty').empty();
-        if (hidden !== "") {
-            console.log("Bot!!");
-        } else if (email == "") {
-            $('#email-empty').prepend("Please add your email");
-        } else if (subject == "") {
-            $('#subject-empty').prepend("Please add a subject!");
-        } else if (message == "") {
-            $('#message-empty').prepend("Please add a message!");
-        } else if (hidden == "" && email !== "" && message !== "" && subject !== "") {
-            StartSubmitting(email, message, subject, hidden);
+        if (hidden !== '') {
+            return;
         }
-    })
-
-    function StartSubmitting(email, message, subject, hidden) {
-
-        console.log("ajax started!")
-        $.ajax({
-            url: "https://formspree.io/bixicodes@gmail.com",
-            type: "post",
-            data: { "_subject": subject, "_replyto": email, "message": message },
-            dataType: "json",
-            success: function(response) {
-                console.log("sucess! " + response);
-	         $('#contact-sent').html('<p class="red-text"><em>Sent email!</em></p>')
-            },
-            error: function(response) {
-                console.log("fail..." + response)
-            }
-
-        });
-
-    }
-
-})
-
-
-function coolSlider(event) {
-        event.preventDefault();
-        var link = event.currentTarget
-        var goingSomeplace = $(link).attr('href')
-
-        $('html, body').animate({
-            scrollTop: $(goingSomeplace).offset().top
-        }, 1000);
-}
+        if (!email) {
+            $('#email-empty').text('Please add your email');
+        } else if (!subject) {
+            $('#subject-empty').text('Please add a subject!');
+        } else if (!message) {
+            $('#message-empty').text('Please add a message!');
+        } else {
+            $.ajax({
+                url: 'https://formspree.io/bixicodes@gmail.com',
+                type: 'post',
+                data: { _subject: subject, _replyto: email, message: message },
+                dataType: 'json',
+                success: function() {
+                    $('#contact-form')[0].reset();
+                    $('#contact-sent').html('<p class="red-text"><em>Sent email!</em></p>');
+                },
+                error: function() {
+                    $('#contact-sent').html('<p class="red-text"><em>Could not send email. Please try again.</em></p>');
+                }
+            });
+        }
+    });
+});
