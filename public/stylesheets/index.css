@@ -556,6 +556,14 @@
      position: relative;
      margin: 0;
  }
+
+ #media {
+     background-image: linear-gradient(rgba(56, 56, 137, 0.35), rgba(56, 56, 137, 0.35)), url('../images/galaxyGirlOptimizedWeb.jpg');
+     background-position: center;
+     background-size: cover;
+     background-repeat: no-repeat;
+     background-attachment: scroll;
+ }
  
  .aboutMe {
      font-size: 20px;
