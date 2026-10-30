@@ -9,7 +9,7 @@
      flex-direction: column;
      font-family: "Poiret One", serif;
      background-color: black;
-     min-width: fit-content;
+     min-width: 0;
  }
  
  main {
@@ -202,7 +202,8 @@
      background-color: rgba(0, 0, 0, 0.7);
      position: relative;
      z-index: 11;
-     padding-top: 50px;
+     box-sizing: border-box;
+     padding: 32px 24px 16px;
  }
  
  @media only screen and (max-width: 992px) {
@@ -236,9 +237,18 @@
      .broward-text {
          text-align: left;
      }
-     .ironhack-holder,
-     .broward-holder {
-         margin-top: 10%;
+     .ironhack-resume-left {
+         padding: 24px 18px 8px;
+     }
+     .ironhack-resume-left > .row {
+         margin-bottom: 0;
+     }
+     .ironhack-resume-left .people-holder,
+     .ironhack-resume-left .udacity-holder,
+     .ironhack-resume-left .ironhack-holder,
+     .ironhack-resume-left .broward-holder {
+         margin-top: 0;
+         margin-bottom: 20px;
      }
  }
  
